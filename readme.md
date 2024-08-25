@@ -99,27 +99,3 @@ To run the Flask server, use the following command:
 ```bash
 python app.py
 ```
-
-- **Port:** 5500
-- **Debug Mode:** Enabled
-
-## Dependencies
-
-- Flask
-- Flask-Session
-- Flask-CORS
-- Flask-Limiter
-- OpenCV (`cv2`)
-- NumPy
-- PIL (Python Imaging Library)
-
-Ensure all dependencies are installed before running the server.
-
-## Notes
-
-- This API is intended for image processing tasks where image scaling and height estimation are required based on user input.
-- Make sure to handle large image uploads carefully due to the maximum allowed content length of 16 MB.
-
----
-
-This documentation should help in understanding the API's capabilities and how to interact with it.
