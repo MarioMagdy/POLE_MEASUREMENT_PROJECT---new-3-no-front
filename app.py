@@ -109,6 +109,7 @@ def initiate():
 
         response = {
             'got_scale': image_scaler_fov is not None,
+            'model_predicted_correctly': model_prediction_accepted,
             'final_base_coords': final_base_coords
         }
 
