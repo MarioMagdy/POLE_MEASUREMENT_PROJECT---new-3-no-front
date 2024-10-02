@@ -125,6 +125,7 @@ def initiate():
 
 @app.route('/scale_using_reference', methods=['POST'])
 def scale_using_reference():
+    stick_length = None
     print(request.form)
     if 'image' not in session or 'base_coordinates' not in session:
         print("Session error")
@@ -133,6 +134,12 @@ def scale_using_reference():
     if 'reference_point' not in request.form:
         print("reference_point error")
         return jsonify({'error': 'Reference point not provided'}), 400
+    
+    if 'stick_length' in request.form:
+        try:
+            stick_length = float(request.form['stick_length'])
+        except ValueError:
+            return jsonify({'error': 'stick_length must be a number'}), 400
 
     reference_point = request.form['reference_point']
     reference_point = tuple(map(int, reference_point.split(',')))  # Convert to tuple of ints
@@ -145,7 +152,7 @@ def scale_using_reference():
     # print("Done using session data")
 
     try:
-        img, image_scaler_ref = main_script.get_scale_of_image_ref(img, base_coordinates, reference_point)
+        img, image_scaler_ref = main_script.get_scale_of_image_ref(img, base_coordinates, reference_point,reference_stick_length=stick_length)
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': f'Error during scaling: {str(e)}'}), 500

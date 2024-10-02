@@ -45,7 +45,7 @@ class MainScript:
 
 
 
-    def get_scale_of_image_ref(self,image:Image,final_base_coords,end_of_measurement_stick_cords):
+    def get_scale_of_image_ref(self,image:Image,final_base_coords,end_of_measurement_stick_cords,reference_stick_length = None):
         # img_with_preds_resized, _ = self.interface1.resize_image(img_with_preds)
         # cv2.putText(img_with_preds_resized, 'The AI Prediction', (10, 30),
         #                         cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
@@ -59,7 +59,13 @@ class MainScript:
         final_image = self.interface1.draw_boxes_image(img0,[end_of_measurement_stick_box])
         ###############
 
-        image_scaler_ref = ImageScales.ImageScaleUsingReference(image,height_of_measurement_stick,base_coordinates=final_base_coords)
+        reference = {'name':"measurement stick"
+             ,'height in inches': 216.535}
+
+        if reference_stick_length:
+            reference['height in inches'] = reference_stick_length
+
+        image_scaler_ref = ImageScales.ImageScaleUsingReference(image,height_of_measurement_stick,base_coordinates=final_base_coords,reference=reference)
 
         return final_image,image_scaler_ref
 

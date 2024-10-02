@@ -57,8 +57,8 @@ class ImageScaleUsingFOV:
 # self.pixels_per_inch = point_height/216.535
 
 
-reference = {'name':"measurement stick"
-             ,'height in inches': 216.535}
+# reference = {'name':"measurement stick"
+#              ,'height in inches': 216.535}
 
 
 class ImageScaleUsingReference:
@@ -66,6 +66,7 @@ class ImageScaleUsingReference:
     def __init__(self,image:Image,reference_height_pixels,base_coordinates,
                  reference = {'name':"measurement stick" ,'height in inches': 216.535}
              ) -> None:
+    
         
         self.image = image
         # print(self.image.size)
@@ -79,8 +80,8 @@ class ImageScaleUsingReference:
 
 
     def calc_scale(self,reference_height_pixels):
-        self.pixels_per_inch= reference_height_pixels /reference['height in inches']
-        self.pixels_per_ft= reference_height_pixels /(reference['height in inches']/12)
+        self.pixels_per_inch= reference_height_pixels /self.reference['height in inches']
+        self.pixels_per_ft= reference_height_pixels /(self.reference['height in inches']/12)
 
     
     def get_height_in_inches(self,point):
