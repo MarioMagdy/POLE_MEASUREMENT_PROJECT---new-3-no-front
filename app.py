@@ -160,7 +160,10 @@ def scale_using_reference():
     if image_scaler_ref:
         session['image_scaler'] = image_scaler_ref
 
+   
+
     response = {
+        'reference_used_height': image_scaler_ref.reference['height in inches'],
         'got_scale': image_scaler_ref is not None,
     }
 
